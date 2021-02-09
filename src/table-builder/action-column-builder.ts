@@ -5,15 +5,14 @@ import { ActionColumnBuilder, ColumnBuilderAbstract, Params, TableColumn } from 
 export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract implements ActionColumnBuilder {
     private column!: TableColumn;
 
-    constructor(name: string) {
-        super(name);
+    constructor() {
+        super();
         this.reset();
-        this.column.field = name;
         this.column.flexGrow = 1;
-        this.column.header = name;
     }
 
-    buildRenderer(): ActionColumnBuilder {
+    buildRenderer(componentName: string): ActionColumnBuilder {
+        this.column.cellRenderer = componentName;
         return this;
     }
 

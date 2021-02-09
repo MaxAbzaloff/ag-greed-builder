@@ -5,12 +5,20 @@ import { ColumnBuilder, ColumnBuilderAbstract, Params, TableColumn } from "./typ
 export class ColumnBuilderImplementation extends ColumnBuilderAbstract implements ColumnBuilder {
     private column!: TableColumn;
 
-    constructor(name: string) {
-        super(name);
+    constructor() {
+        super();
         this.reset();
-        this.column.field = name;
         this.column.flexGrow = 1;
-        this.column.header = name;
+    }
+
+    buildField(name: string): ColumnBuilder {
+        this.column.field = name;
+        return this;
+    }
+    
+    buildTitle(title: string): ColumnBuilder {
+        this.column.header = title;
+        return this;
     }
 
     buildRenderer(): ColumnBuilder {
@@ -53,6 +61,7 @@ export class ColumnBuilderImplementation extends ColumnBuilderAbstract implement
 
     buildCheckbox(isCheckboxEnabled: ((target: Params) => boolean) | boolean = true): ColumnBuilder {
         this.column.checkboxSelection = isCheckboxEnabled;
+        this.column.headerCheckboxSelection = true;
         return this;
     }
     

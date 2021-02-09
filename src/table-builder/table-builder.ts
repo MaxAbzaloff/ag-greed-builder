@@ -1,3 +1,5 @@
+import { Component } from "react";
+
 import { TableBuilder, Table, TableColumn } from "./types";
 import { TableImplementation } from "./table";
 
@@ -9,8 +11,15 @@ export class TableBuilderImplementation implements TableBuilder {
         this.reset();
     }
 
+    public registerComponent(name: string, component: Component): TableBuilder {
+        const newComponent = Object.create(null);
+        newComponent[name] = component;
+        this.table.addComponent(newComponent);
+        return this;
+    }
+
     public buildColumn = (column: TableColumn): TableBuilder => {
-        this.table.columns.push(column);
+        this.table.pushColumn(column);
         return this;
     };
 

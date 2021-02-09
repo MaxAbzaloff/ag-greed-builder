@@ -1,5 +1,6 @@
 import { ValueFormatterParams } from 'ag-grid-community';
 import React from 'react';
+import { ActionElement } from './ActionElement';
 
 import { RandomPageWithAPropsAndXhr } from './ready-table';
 
@@ -19,26 +20,35 @@ import { ActionColumnBuilderImplementation } from './table-builder/action-column
 const App = () => {
     const tableBuilder: TableBuilder = new TableBuilderImplementation();
 
-    const make: ColumnBuilder = new ColumnBuilderImplementation('make');
-    make.buildCheckbox((target: Params) => {
+    tableBuilder.registerComponent('actions', ActionElement);
+
+    const checkbox: ColumnBuilder = new ColumnBuilderImplementation();
+    checkbox.buildCheckbox((target: Params) => {
         // here can be any filtered funtion
         return target.data.price > 35000;
     });
+
+    const make: ColumnBuilder = new ColumnBuilderImplementation();
+    make.buildField('make');
     make.buildHeader('Fancy header');
 
-    const model: ColumnBuilder = new ColumnBuilderImplementation('model');
+    const model: ColumnBuilder = new ColumnBuilderImplementation();
+    model.buildField('model');
     model.buildEdit();
 
-    const price: ColumnBuilder = new ColumnBuilderImplementation('price');
+    const price: ColumnBuilder = new ColumnBuilderImplementation();
+    price.buildField('price');
     price.buildSort();
     price.buildValueFormatter((target: ValueFormatterParams): string => {
         return '$ ' + target.value;
-    })
+    });
 
-    const actions: ActionColumnBuilder = new ActionColumnBuilderImplementation('actions');
+    const actions: ActionColumnBuilder = new ActionColumnBuilderImplementation();
     actions.buildHeader('Actions');
+    actions.buildRenderer('actions');
 
     const table: Table = tableBuilder
+        .buildColumn(checkbox.getColumn())
         .buildColumn(make.getColumn())
         .buildColumn(model.getColumn())
         .buildColumn(price.getColumn())

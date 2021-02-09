@@ -18,6 +18,11 @@ export interface TableBuilder {
      */
     buildColumn(column: TableColumn): TableBuilder,
     /**
+     * Sets jsx elements to render content (custom react elements for cells content)
+     * @param component component which will render cells content
+     */
+    registerComponent(name: string, component: any): TableBuilder;
+    /**
      * Drop all settings.
      */
     reset(): TableBuilder,
@@ -53,6 +58,10 @@ export interface TableColumn {
      */
     editable?: boolean | ((target: any) => boolean);
     /**
+     * Is header checkbox needed.
+     */
+    headerCheckboxSelection?: boolean;
+    /**
      * Callback function on edit value.
      */
     onChangeValue?: (target: any) => void;
@@ -64,15 +73,34 @@ export interface TableColumn {
      * Pipe which addes new renderer.
      */
     columnRenderer?: () => Component;
+    /**
+     * Defines if column can be selected from header checkbox.
+     */
+    isRowSelectable?: boolean;
+    /**
+     * Name of react component that will render content
+     */
+    cellRenderer?: string;
 }
 
-export type TableComponent = (props: TableProps) => JSX.Element;
+export type TableComponent = (props: any) => JSX.Element;
+
+export interface TableFrameworkComponent {
+    name: string;
+    component: JSX.Element;
+}
 
 export interface Table {
     /**
-     * Array of all column configs.
+     * Push new column in a table setup
+     * @param column table column
      */
-    columns: TableColumn[];
+    pushColumn(column: TableColumn): Table;
+    /**
+     * Sets jsx elements to render content (custom react elements for cells content)
+     * @param component component which will render cells content
+     */
+    addComponent(component: TableFrameworkComponent): Table;
     /**
      * Return JSX element which we can use as a usual react component.
      */
@@ -107,7 +135,7 @@ interface BasicColumnBuilder {
     /**
      * Set new renderer for a column.
      */
-    buildRenderer(): BasicColumnBuilder;
+    buildRenderer(componentName: string): BasicColumnBuilder;
     /**
      * Return ready to use column config.
      */
@@ -125,6 +153,18 @@ export interface ColumnBuilder extends BasicColumnBuilder {
      * @param isEditable true/false or function to figure it out later dynamically
      */
     buildEdit(isEditable?: boolean | ((target: any) => boolean), onChangeValue?: (params: any) => void): ColumnBuilder;
+    /**
+     * Set field from data to be rendered here.
+     * 
+     * @param name field name from data to map at column
+     */
+    buildField(name: string): ColumnBuilder;
+    /**
+     * Set title of column.
+     * 
+     * @param title title of the new column
+     */
+    buildTitle(title: string): ColumnBuilder;
 }
 
 export interface ActionColumnBuilder extends BasicColumnBuilder {
@@ -133,7 +173,7 @@ export interface ActionColumnBuilder extends BasicColumnBuilder {
 
 export abstract class ColumnBuilderAbstract {
     // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-    constructor(columnName: string) {}
+    constructor() {}
 }
 
 export interface Params {
