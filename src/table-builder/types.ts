@@ -62,6 +62,10 @@ export interface TableColumn {
      */
     headerCheckboxSelection?: boolean;
     /**
+     * Name of registered header component
+     */
+    headerComponent?: string;
+    /**
      * Callback function on edit value.
      */
     onChangeValue?: (target: any) => void;
@@ -168,7 +172,12 @@ export interface ColumnBuilder extends BasicColumnBuilder {
 }
 
 export interface ActionColumnBuilder extends BasicColumnBuilder {
-
+    /**
+     * Set custom header component
+     * 
+     * @param component name of registered component that should replace header
+     */
+    buildCustomHeader(component: string): ActionColumnBuilder;
 }
 
 export abstract class ColumnBuilderAbstract {
@@ -176,7 +185,7 @@ export abstract class ColumnBuilderAbstract {
     constructor() {}
 }
 
-export interface Params {
+export interface Params<T> {
     api: GridApi;
     columnApi: ColumnApi;
     colDef: ColDef;
@@ -189,5 +198,5 @@ export interface Params {
     /**
      * Row object with all data from our data array.
      */
-    data?: any;
+    data?: T;
 }

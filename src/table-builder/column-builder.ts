@@ -59,7 +59,7 @@ export class ColumnBuilderImplementation extends ColumnBuilderAbstract implement
         return this;
     }
 
-    buildCheckbox(isCheckboxEnabled: ((target: Params) => boolean) | boolean = true): ColumnBuilder {
+    buildCheckbox(isCheckboxEnabled: ((target: Params<any>) => boolean) | boolean = true): ColumnBuilder {
         this.column.checkboxSelection = isCheckboxEnabled;
         this.column.headerCheckboxSelection = true;
         return this;

@@ -1,6 +1,7 @@
 import { ValueFormatterParams } from 'ag-grid-community';
 import React from 'react';
 import { ActionElement } from './ActionElement';
+import { CustomHeader } from './CustomHeader';
 
 import { RandomPageWithAPropsAndXhr } from './ready-table';
 
@@ -21,9 +22,10 @@ const App = () => {
     const tableBuilder: TableBuilder = new TableBuilderImplementation();
 
     tableBuilder.registerComponent('actions', ActionElement);
+    tableBuilder.registerComponent('customHeader', CustomHeader);
 
     const checkbox: ColumnBuilder = new ColumnBuilderImplementation();
-    checkbox.buildCheckbox((target: Params) => {
+    checkbox.buildCheckbox((target: Params<any>) => {
         // here can be any filtered funtion
         return target.data.price > 35000;
     });
@@ -46,6 +48,7 @@ const App = () => {
     const actions: ActionColumnBuilder = new ActionColumnBuilderImplementation();
     actions.buildHeader('Actions');
     actions.buildRenderer('actions');
+    actions.buildCustomHeader('customHeader');
 
     const table: Table = tableBuilder
         .buildColumn(checkbox.getColumn())

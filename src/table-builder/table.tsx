@@ -67,6 +67,7 @@ export class TableImplementation implements Table {
                 valueFormatter={column.valueFormatter}
                 headerCheckboxSelection={column.headerCheckboxSelection}
                 cellRenderer={column.cellRenderer}
+                headerComponent={column.headerComponent}
               ></AgGridColumn>
             ))
           }

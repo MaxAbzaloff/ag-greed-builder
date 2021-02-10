@@ -1,5 +1,5 @@
 import { ValueFormatterParams } from "ag-grid-community";
-import { ActionColumnBuilder, ColumnBuilderAbstract, Params, TableColumn } from "./types";
+import { ActionColumnBuilder, ColumnBuilder, ColumnBuilderAbstract, Params, TableColumn } from "./types";
 
 
 export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract implements ActionColumnBuilder {
@@ -9,6 +9,11 @@ export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract imp
         super();
         this.reset();
         this.column.flexGrow = 1;
+    }
+    
+    buildCustomHeader(component: string): ActionColumnBuilder {
+        this.column.headerComponent = component;
+        return this;
     }
 
     buildRenderer(componentName: string): ActionColumnBuilder {
@@ -36,7 +41,7 @@ export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract imp
         return this;
     }
 
-    buildCheckbox(isCheckboxEnabled: ((target: Params) => boolean) | boolean = true): ActionColumnBuilder {
+    buildCheckbox(isCheckboxEnabled: ((target: Params<any>) => boolean) | boolean = true): ActionColumnBuilder {
         this.column.checkboxSelection = isCheckboxEnabled;
         return this;
     }
