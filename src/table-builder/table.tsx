@@ -45,8 +45,6 @@ export class TableImplementation implements Table {
         rowData,
       } = props;
       
-      console.log(props);
-
       return (
         <AgGridReact
           rowData={rowData}
