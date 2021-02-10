@@ -1,5 +1,10 @@
 import { ValueFormatterParams } from "ag-grid-community";
-import { ActionColumnBuilder, ColumnBuilder, ColumnBuilderAbstract, Params, TableColumn } from "./types";
+import {
+  ActionColumnBuilder,
+  ColumnBuilderAbstract,
+  Params,
+  TableColumn
+} from "./types";
 
 
 export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract implements ActionColumnBuilder {

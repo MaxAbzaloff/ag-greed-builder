@@ -14,8 +14,8 @@ import {
     ColumnBuilderImplementation,
     Params,
     ActionColumnBuilder,
+    ActionColumnBuilderImplementation,
 } from './table-builder';
-import { ActionColumnBuilderImplementation } from './table-builder/action-column-builder';
 
 
 const App = () => {
