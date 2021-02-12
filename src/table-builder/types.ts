@@ -16,7 +16,7 @@ export interface TableBuilder {
      * 
      * @param {TableColumn} column ready column object
      */
-    buildColumn(column: TableColumn): TableBuilder,
+    addColumn(column: TableColumn): TableBuilder,
     /**
      * Sets jsx elements to render content (custom react elements for cells content)
      * @param component component which will render cells content
@@ -29,7 +29,7 @@ export interface TableBuilder {
     /**
      * Return ready to use table config.
      */
-    getTable(): Table,
+    buildTable(): Table,
 }
 
 export interface TableColumn {
@@ -125,44 +125,44 @@ interface BasicColumnBuilder {
      * 
      * @param {string} header custom header
      */
-    buildHeader(header: string): BasicColumnBuilder;
+    setHeader(header: string): BasicColumnBuilder;
     /**
      * Set elements from row can be selected by checkbox.
      */
-    buildCheckbox(isCheckboxEnabled?: (target: any) => boolean): BasicColumnBuilder;
+    setCheckbox(isCheckboxEnabled?: (target: any) => boolean): BasicColumnBuilder;
     /**
      * Set formatter for column.
      * 
      * @param formatFunction function that formats value in a specific way
      */
-    buildValueFormatter(formatFunction: (taget: ValueFormatterParams) => string): BasicColumnBuilder;
+    setValueFormatter(formatFunction: (taget: ValueFormatterParams) => string): BasicColumnBuilder;
     /**
      * Set new renderer for a column.
      */
-    buildRenderer(componentName: string): BasicColumnBuilder;
+    setRenderer(componentName: string): BasicColumnBuilder;
     /**
      * Return ready to use column config.
      */
-    getColumn(): TableColumn;
+    buildColumn(): TableColumn;
 }
 
 export interface ColumnBuilder extends BasicColumnBuilder {
     /**
      * Set column as sortable.
      */
-    buildSort(): ColumnBuilder;
+    setSortable(): ColumnBuilder;
     /**
      * Set element as editable.
      * 
      * @param isEditable true/false or function to figure it out later dynamically
      */
-    buildEdit(isEditable?: boolean | ((target: any) => boolean), onChangeValue?: (params: any) => void): ColumnBuilder;
+    setEditable(isEditable?: boolean | ((target: any) => boolean), onChangeValue?: (params: any) => void): ColumnBuilder;
     /**
      * Set field from data to be rendered here.
      * 
      * @param name field name from data to map at column
      */
-    buildField(name: string): ColumnBuilder;
+    setField(name: string): ColumnBuilder;
     /**
      * Set title of column.
      * 
@@ -177,7 +177,7 @@ export interface ActionColumnBuilder extends BasicColumnBuilder {
      * 
      * @param component name of registered component that should replace header
      */
-    buildCustomHeader(component: string): ActionColumnBuilder;
+    setCustomHeader(component: string): ActionColumnBuilder;
 }
 
 export abstract class ColumnBuilderAbstract {

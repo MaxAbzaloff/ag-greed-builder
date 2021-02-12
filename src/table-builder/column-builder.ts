@@ -11,7 +11,7 @@ export class ColumnBuilderImplementation extends ColumnBuilderAbstract implement
         this.column.flexGrow = 1;
     }
 
-    buildField(name: string): ColumnBuilder {
+    setField(name: string): ColumnBuilder {
         this.column.field = name;
         return this;
     }
@@ -21,16 +21,16 @@ export class ColumnBuilderImplementation extends ColumnBuilderAbstract implement
         return this;
     }
 
-    buildRenderer(): ColumnBuilder {
+    setRenderer(): ColumnBuilder {
         return this;
     }
 
-    buildValueFormatter(formatFunction: (taget: ValueFormatterParams) => string): ColumnBuilder {
+    setValueFormatter(formatFunction: (taget: ValueFormatterParams) => string): ColumnBuilder {
         this.column.valueFormatter = formatFunction;
         return this;
     }
 
-    buildEdit(
+    setEditable(
         isEditable: boolean | ((target: any) => boolean) = true, 
         onChangeValue: (params: any) => void = () => {}
     ): ColumnBuilder {
@@ -44,7 +44,7 @@ export class ColumnBuilderImplementation extends ColumnBuilderAbstract implement
         return this;
     }
 
-    buildHeader(header: string): ColumnBuilder {
+    setHeader(header: string): ColumnBuilder {
         this.column.header = header;
         return this;
     }
@@ -54,18 +54,18 @@ export class ColumnBuilderImplementation extends ColumnBuilderAbstract implement
         return this;
     }
 
-    buildSort(): ColumnBuilder {
+    setSortable(): ColumnBuilder {
         this.column.sortable = true;
         return this;
     }
 
-    buildCheckbox(isCheckboxEnabled: ((target: Params<any>) => boolean) | boolean = true): ColumnBuilder {
+    setCheckbox(isCheckboxEnabled: ((target: Params<any>) => boolean) | boolean = true): ColumnBuilder {
         this.column.checkboxSelection = isCheckboxEnabled;
         this.column.headerCheckboxSelection = true;
         return this;
     }
     
-    getColumn(): TableColumn {
+    buildColumn(): TableColumn {
         const column = this.column;
         this.reset();
         return column;

@@ -16,17 +16,17 @@ export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract imp
         this.column.flexGrow = 1;
     }
     
-    buildCustomHeader(component: string): ActionColumnBuilder {
+    setCustomHeader(component: string): ActionColumnBuilder {
         this.column.headerComponent = component;
         return this;
     }
 
-    buildRenderer(componentName: string): ActionColumnBuilder {
+    setRenderer(componentName: string): ActionColumnBuilder {
         this.column.cellRenderer = componentName;
         return this;
     }
 
-    buildValueFormatter(formatFunction: (taget: ValueFormatterParams) => string): ActionColumnBuilder {
+    setValueFormatter(formatFunction: (taget: ValueFormatterParams) => string): ActionColumnBuilder {
         this.column.valueFormatter = formatFunction;
         return this;
     }
@@ -36,7 +36,7 @@ export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract imp
         return this;
     }
 
-    buildHeader(header: string): ActionColumnBuilder {
+    setHeader(header: string): ActionColumnBuilder {
         this.column.header = header;
         return this;
     }
@@ -46,12 +46,12 @@ export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract imp
         return this;
     }
 
-    buildCheckbox(isCheckboxEnabled: ((target: Params<any>) => boolean) | boolean = true): ActionColumnBuilder {
+    setCheckbox(isCheckboxEnabled: ((target: Params<any>) => boolean) | boolean = true): ActionColumnBuilder {
         this.column.checkboxSelection = isCheckboxEnabled;
         return this;
     }
     
-    getColumn(): TableColumn {
+    buildColumn(): TableColumn {
         const column = this.column;
         this.reset();
         return column;

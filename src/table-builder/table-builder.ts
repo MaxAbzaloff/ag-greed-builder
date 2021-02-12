@@ -18,7 +18,7 @@ export class TableBuilderImplementation implements TableBuilder {
         return this;
     }
 
-    public buildColumn = (column: TableColumn): TableBuilder => {
+    public addColumn = (column: TableColumn): TableBuilder => {
         this.table.pushColumn(column);
         return this;
     };
@@ -28,7 +28,7 @@ export class TableBuilderImplementation implements TableBuilder {
         return this;
     }
 
-    public getTable = (): Table => {
+    public buildTable = (): Table => {
         const table = this.table;
         this.reset();
         return table;

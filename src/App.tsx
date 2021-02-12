@@ -25,38 +25,38 @@ const App = () => {
     tableBuilder.registerComponent('customHeader', CustomHeader);
 
     const checkbox: ColumnBuilder = new ColumnBuilderImplementation();
-    checkbox.buildCheckbox((target: Params<any>) => {
-        // here can be any filtered funtion
+    checkbox.setCheckbox((target: Params<any>) => {
+        // here can be any filtered function
         return target.data.price > 35000;
     });
 
     const make: ColumnBuilder = new ColumnBuilderImplementation();
-    make.buildField('make');
-    make.buildHeader('Fancy header');
+    make.setField('make');
+    make.setHeader('Fancy header');
 
     const model: ColumnBuilder = new ColumnBuilderImplementation();
-    model.buildField('model');
-    model.buildEdit();
+    model.setField('model');
+    model.setEditable();
 
     const price: ColumnBuilder = new ColumnBuilderImplementation();
-    price.buildField('price');
-    price.buildSort();
-    price.buildValueFormatter((target: ValueFormatterParams): string => {
+    price.setField('price');
+    price.setSortable();
+    price.setValueFormatter((target: ValueFormatterParams): string => {
         return '$ ' + target.value;
     });
 
     const actions: ActionColumnBuilder = new ActionColumnBuilderImplementation();
-    actions.buildHeader('Actions');
-    actions.buildRenderer('actions');
-    actions.buildCustomHeader('customHeader');
+    actions.setHeader('Actions');
+    actions.setRenderer('actions');
+    actions.setCustomHeader('customHeader');
 
     const table: Table = tableBuilder
-        .buildColumn(checkbox.getColumn())
-        .buildColumn(make.getColumn())
-        .buildColumn(model.getColumn())
-        .buildColumn(price.getColumn())
-        .buildColumn(actions.getColumn())
-        .getTable();
+        .addColumn(checkbox.buildColumn())
+        .addColumn(make.buildColumn())
+        .addColumn(model.buildColumn())
+        .addColumn(price.buildColumn())
+        .addColumn(actions.buildColumn())
+        .buildTable();
 
     const TableElement: TableComponent = table.getReadyToUseJSXElement();
 
