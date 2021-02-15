@@ -1,0 +1,40 @@
+.ag-root-wrapper {
+  border: none !important;
+  background-color: var(--main-bg-color) !important;
+}
+
+.ag-header {
+  border-bottom: none !important;
+  margin-bottom: 16px;
+  background-color: var(--main-bg-color);
+}
+
+.ag-header::after {
+  content: " ";
+}
+
+.ag-header-viewport {
+  background-color: var(--second-bg-color);
+  border-radius: 10px 10px 10px 10px;
+}
+
+.ag-header-cell {
+  font-size: 14px;
+  font-weight: bolder;
+  color: var(--header-label-color);
+  overflow-wrap: break-word;
+}
+
+.ag-row {
+  background-color: var(--main-bg-color) !important;
+  border-color: var(--second-bg-color) !important;
+  border-radius: 10px 10px 10px 10px;
+}
+
+.ag-row:hover {
+  background-color: var(--third-bg-color) !important;
+}
+
+.ag-body-viewport {
+  background-color: var(--main-bg-color);
+}

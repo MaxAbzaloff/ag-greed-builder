@@ -7,46 +7,14 @@
 
 #root {
   --main-bg-color: #f6f8fb;
-  background-color: var(--main-bg-color);
+  --second-bg-color: #fff;
+  --third-bg-color: rgba(255, 255, 255, 0.45);
+  --header-label-color: #475f7b;
 }
 
-.ag-root-wrapper {
-  border: none !important;
-  background-color: var(--main-bg-color) !important;
-}
-
-.ag-header {
-  border-bottom: none !important;
-  margin-bottom: 16px;
-  background-color: var(--main-bg-color);
-}
-
-.ag-header::after {
-  content: " ";
-}
-
-.ag-header-viewport {
-  background-color: #fff;
-  border-radius: 10px 10px 10px 10px;
-}
-
-.ag-header-cell {
-  font-size: 14px;
-  font-weight: bolder;
-  color: #475f7b;
-  overflow-wrap: break-word;
-}
-
-.ag-row {
-  background-color: var(--main-bg-color) !important;
-  border-color: #fff !important;
-  border-radius: 10px 10px 10px 10px;
-}
-
-.ag-row:hover {
-  background-color: rgba(255, 255, 255, 0.45) !important;
-}
-
-.ag-body-viewport {
-  background-color: var(--main-bg-color);
+#root[theme="dark"] {
+  --main-bg-color: hsl(var(--main-bg-color), 50%, 10%);
+  --second-bg-color: hsl(var(--second-bg-color), 50%, 10%);
+  --third-bg-color: hsl(var(--third-bg-color), 50%, 10%);
+  --header-label-color: hsl(var(--header-label-color), 50%, 10%);
 }
