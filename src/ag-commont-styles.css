@@ -28,11 +28,13 @@
 .ag-row {
   background-color: var(--main-bg-color) !important;
   border-color: var(--second-bg-color) !important;
-  border-radius: 10px 10px 10px 10px;
 }
 
 .ag-row:hover {
   background-color: var(--third-bg-color) !important;
+  border-radius: 10px 10px 10px 10px;
+  border-left: 0.5px solid;
+  border-right: 0.5px solid;
 }
 
 .ag-body-viewport {
