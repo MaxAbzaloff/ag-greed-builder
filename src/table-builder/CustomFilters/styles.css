@@ -1,0 +1,43 @@
+.filter-form {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  align-items: center;
+  background-color: var(--main-bg-color);
+}
+
+.filter-input {
+  margin-bottom: 5px;
+  padding: 3px 8px;
+  outline: none;
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+}
+
+.filter-input:focus {
+  border-color: var(--elements-bg-color);
+}
+
+.filter-input:hover {
+  border-color: var(--elements-bg-color);
+}
+
+.filter-date-input {
+}
+
+.filter-date-rage-wrapper {
+}
+
+.filter-select {
+}
+
+.filter-apply-button {
+  padding: 2px 5px;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--elements-bg-color);
+  color: var(--second-bg-color);
+  cursor: pointer;
+}

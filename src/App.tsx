@@ -15,15 +15,30 @@ import {
   Params,
   ActionColumnBuilder,
   ActionColumnBuilderImplementation,
+  SortObject,
 } from "./table-builder";
+
+import { FilterTypes } from "./table-builder/CustomFilters";
 
 import "./ag-commont-styles.css";
 
 const App = () => {
   const tableBuilder: TableBuilder = new TableBuilderImplementation();
 
+  const serverSortExample = (sortMode: SortObject) => {
+    console.log(sortMode);
+    console.log("SERVER SORT");
+  };
+
+  const serverSearchExample = (searchModel: SortObject) => {
+    console.log(searchModel);
+    console.log("SERVER SEARCH");
+  };
+
   tableBuilder.registerComponent("actions", ActionElement);
   tableBuilder.registerComponent("customHeader", CustomHeader);
+  tableBuilder.setSortFunction(serverSortExample);
+  tableBuilder.setSearchFunction(serverSearchExample);
 
   const checkbox: ColumnBuilder = new ColumnBuilderImplementation();
   checkbox.setCheckbox((target: Params<any>) => {
@@ -34,10 +49,17 @@ const App = () => {
   const make: ColumnBuilder = new ColumnBuilderImplementation();
   make.setField("make");
   make.setHeader("Fancy header");
+  make.setSortable();
+  make.setFilter(FilterTypes.TEXT_FILTER);
 
   const model: ColumnBuilder = new ColumnBuilderImplementation();
   model.setField("model");
   model.setEditable();
+  model.setFilter(FilterTypes.ENUM_FILTER, [
+    { name: "Один", key: "one" },
+    { name: "Два", key: "two" },
+    { name: "Три", key: "thri" },
+  ]);
 
   const price: ColumnBuilder = new ColumnBuilderImplementation();
   price.setField("price");

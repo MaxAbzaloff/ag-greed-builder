@@ -10,6 +10,8 @@
   --second-bg-color: #fff;
   --third-bg-color: rgba(255, 255, 255, 0.45);
   --header-label-color: #475f7b;
+  --input-border-color: rgb(219, 232, 239);
+  --elements-bg-color: #30a3e6;
 }
 
 #root[theme="dark"] {
