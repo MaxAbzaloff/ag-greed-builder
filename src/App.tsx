@@ -52,12 +52,12 @@ const App = () => {
   actions.setCustomHeader("customHeader");
 
   const table: Table = tableBuilder
-    .addColumn(checkbox.buildColumn())
-    .addColumn(make.buildColumn())
-    .addColumn(model.buildColumn())
-    .addColumn(price.buildColumn())
-    .addColumn(actions.buildColumn())
-    .buildTable();
+    .addColumn(checkbox.build())
+    .addColumn(make.build())
+    .addColumn(model.build())
+    .addColumn(price.build())
+    .addColumn(actions.build())
+    .build();
 
   const TableElement: TableComponent = table.getReadyToUseJSXElement();
 

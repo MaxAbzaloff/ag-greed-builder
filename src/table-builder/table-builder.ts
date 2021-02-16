@@ -28,7 +28,7 @@ export class TableBuilderImplementation implements TableBuilder {
         return this;
     }
 
-    public buildTable = (): Table => {
+    public build = (): Table => {
         const table = this.table;
         this.reset();
         return table;
