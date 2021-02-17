@@ -1,6 +1,7 @@
 import { TextFilter } from "./TextFilter";
 import { NumberFilter } from "./NumberFilter";
 import { SelectFilter } from "./SelectFilter";
+import { DateFilter } from "./DateRangeFilter";
 
 enum FilterTypes {
   TEXT_FILTER = "textFilter",
@@ -9,4 +10,4 @@ enum FilterTypes {
   ENUM_FILTER = "selectFilter",
 }
 
-export { TextFilter, NumberFilter, SelectFilter, FilterTypes };
+export { TextFilter, NumberFilter, SelectFilter, DateFilter, FilterTypes };

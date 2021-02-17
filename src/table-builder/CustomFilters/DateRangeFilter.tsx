@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import "./styles.css";
 
-class TextFilter extends Component<any, any> {
+import { CommonFilterForm } from "./CommonFilterForm";
+
+class DateFilter extends Component<any, any> {
   private input: any;
   constructor(props: any) {
     super(props);
@@ -8,14 +11,15 @@ class TextFilter extends Component<any, any> {
     this.input = React.createRef();
 
     this.state = {
-      filter: "",
+      from: "",
+      to: "",
     };
 
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   isFilterActive() {
-    return this.state.filter !== "";
+    return this.state.from !== "" || this.state.to !== "";
   }
 
   doesFilterPass(params: any) {
@@ -23,12 +27,13 @@ class TextFilter extends Component<any, any> {
   }
 
   getModel() {
-    return { filter: this.state.filter };
+    return { from: this.state.from, to: this.state.to };
   }
 
   setModel(model: any) {
-    const filter = model ? model.filter : "";
-    this.setState({ filter: filter });
+    const from = model ? model.from : "";
+    const to = model ? model.to : "";
+    this.setState({ from, to });
   }
 
   afterGuiAttached(params: any) {
@@ -37,28 +42,36 @@ class TextFilter extends Component<any, any> {
 
   onSubmit(event: any) {
     event.preventDefault();
+    const from = event.target.elements.from.value;
+    const to = event.target.elements.to.value;
 
-    let filter = event.target.elements.filter.value;
-
-    if (this.state.filter !== filter) {
-      this.setState({ filter: filter }, () => {
-        this.props.filterChangedCallback();
-      });
-    }
+    this.setState({ from, to }, () => {
+      this.props.filterChangedCallback();
+    });
   }
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="filter"
-          ref={this.input}
-          defaultValue={this.state.filter}
-        />
-        <button>Apply</button>
-      </form>
+      <CommonFilterForm onSubmit={this.onSubmit}>
+        <div className={"filter-date-rage-wrapper"}>
+          <input
+            type="date"
+            name="from"
+            ref={this.input}
+            defaultValue={this.state.from}
+            className={"filter-input"}
+          />
+          <input
+            type="date"
+            name="to"
+            ref={this.input}
+            defaultValue={this.state.to}
+            className={"filter-input"}
+          />
+        </div>
+      </CommonFilterForm>
     );
   }
 }
 
-export { TextFilter };
+export { DateFilter };

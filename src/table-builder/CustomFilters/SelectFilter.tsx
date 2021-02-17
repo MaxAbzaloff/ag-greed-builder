@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./styles.css";
 
+import { CommonFilterForm } from "./CommonFilterForm";
+
 class SelectFilter extends Component<any, any> {
   private input: any;
   constructor(props: any) {
@@ -46,7 +48,7 @@ class SelectFilter extends Component<any, any> {
     let filter = event.target.elements.filter.value;
 
     if (this.state.filter !== filter) {
-      this.setState({ filter: filter }, () => {
+      this.setState({ filter }, () => {
         this.props.filterChangedCallback();
       });
     }
@@ -54,7 +56,7 @@ class SelectFilter extends Component<any, any> {
 
   render() {
     return (
-      <form className={"filter-form"} onSubmit={this.onSubmit}>
+      <CommonFilterForm onSubmit={this.onSubmit}>
         <select
           name="filter"
           ref={this.input}
@@ -65,8 +67,7 @@ class SelectFilter extends Component<any, any> {
             <option>{opt.name}</option>
           ))}
         </select>
-        <button className={"filter-apply-button"}>Apply</button>
-      </form>
+      </CommonFilterForm>
     );
   }
 }

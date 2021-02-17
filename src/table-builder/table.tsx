@@ -14,7 +14,12 @@ import {
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-import { NumberFilter, TextFilter, SelectFilter } from "./CustomFilters";
+import {
+  NumberFilter,
+  TextFilter,
+  SelectFilter,
+  DateFilter,
+} from "./CustomFilters";
 export class TableImplementation implements Table {
   private columns: TableColumn[] = [];
   private components = Object.create(null);
@@ -74,6 +79,7 @@ export class TableImplementation implements Table {
         textFilter: TextFilter,
         numberFilter: NumberFilter,
         selectFilter: SelectFilter,
+        dateFilter: DateFilter,
       };
       return (
         <AgGridReact

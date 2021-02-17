@@ -67,6 +67,7 @@ const App = () => {
   price.setValueFormatter((target: ValueFormatterParams): string => {
     return "$ " + target.value;
   });
+  price.setFilter(FilterTypes.DATE_FILTER);
 
   const actions: ActionColumnBuilder = new ActionColumnBuilderImplementation();
   actions.setHeader("Actions");
