@@ -51,7 +51,7 @@ export class ActionColumnBuilderImplementation extends ColumnBuilderAbstract imp
         return this;
     }
     
-    buildColumn(): TableColumn {
+    build(): TableColumn {
         const column = this.column;
         this.reset();
         return column;

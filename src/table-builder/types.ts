@@ -29,7 +29,7 @@ export interface TableBuilder {
   /**
    * Return ready to use table config.
    */
-  buildTable(): Table;
+  build(): Table,
   /**
    * Outer bind
    */
@@ -167,7 +167,7 @@ interface BasicColumnBuilder {
   /**
    * Return ready to use column config.
    */
-  buildColumn(): TableColumn;
+  build(): TableColumn;
 }
 
 export interface ColumnBuilder extends BasicColumnBuilder {

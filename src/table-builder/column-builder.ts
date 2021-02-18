@@ -85,9 +85,9 @@ export class ColumnBuilderImplementation
     return this;
   }
 
-  buildColumn(): TableColumn {
-    const column = this.column;
-    this.reset();
-    return column;
+  build(): TableColumn {
+      const column = this.column;
+      this.reset();
+      return column;
   }
 }
