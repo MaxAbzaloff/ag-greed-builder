@@ -3,7 +3,6 @@ import { Component } from "react";
 import { TableBuilder, Table, TableColumn } from "./types";
 import { TableImplementation } from "./table";
 
-
 export class TableBuilderImplementation implements TableBuilder {
     private table!: Table;
 
@@ -21,6 +20,16 @@ export class TableBuilderImplementation implements TableBuilder {
     public addColumn = (column: TableColumn): TableBuilder => {
         this.table.pushColumn(column);
         return this;
+    };
+
+    public setSortFunction = (serersideSort: Function): TableBuilder => {
+      this.table.setSort(serersideSort);
+      return this;
+    };
+
+    public setSearchFunction = (serersideSearch: Function): TableBuilder => {
+      this.table.setSearch(serersideSearch);
+      return this;
     };
 
     public reset = (): TableBuilder => {
